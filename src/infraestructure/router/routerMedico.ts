@@ -1,9 +1,8 @@
 import { Router } from "express";
+import controllerMedico from "../controller/controllerMedico";
 const router = Router()
 
-router.get('/listar', (req, res) => {
-    res.status(200).send("/listar")
-})
+router.get('/listar', controllerMedico.index)
 
 router.put('/atualizar/:id', (req, res) => {
     res.status(200).send("/atualizar")
