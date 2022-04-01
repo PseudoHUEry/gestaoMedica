@@ -15,6 +15,7 @@ export interface IMedico {
         'Cirurgia cabeça e pescoço' |
         'Cirurgia cardíaca' |
         'Cirurgia de tórax']
+    status?: "Ativo" | "Desativado"
 }
 export interface MedicoModel extends Model<IMedico>, IMedico{}
 export class Medico extends Model<MedicoModel, IMedico>{}
@@ -53,6 +54,11 @@ const schema = {
             'Cirurgia cabeça e pescoço',
             'Cirurgia cardíaca',
             'Cirurgia de tórax']
+    },
+    status: {
+        type: DataTypes.ENUM,
+        values: ["Ativo", "Desativado"],
+        default: "Ativo"
     }
 }
 export const MedicoModel = ()=>{ 
