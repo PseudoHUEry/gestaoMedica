@@ -1,18 +1,26 @@
-import repositoryMedico from "../../repository/repositoryMedico"
-export default {
-    index: async (req: any, res: any) => {
-        try {
-            const teste = {
-                crm: Math.random() * 1000,
-                cep: 123,
-                nomeMedico: 'aaaa',
-                telefone: 123,
-                telefoneCelular: 123,
-                especialidades: ['Alergologia', 'Angiologia', 'Buco maxilo']
+import createMedico from '../../use-case/createMedico';
+import { Request, Response } from 'express'
+import { validationResult } from "express-validator";
 
+export default {
+    create: async (req: Partial<Request>, res: Response) => {
+        try {
+            const errors = validationResult(req)
+            if (errors) {
+                return res.status(400).json({ errors: errors.array() })
             }
-            const result = await repositoryMedico.create(teste)
-            res.json(result)
+            const payload = req?.body
+            const result = await createMedico(payload)
+            res.status(result.status).json({ ...result.data })
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    update: async (req: Partial<Request>, res: Response) => {
+        try {
+            const payload = req?.body
+            const result = await createMedico(payload)
+            res.status(result.status).json({ ...result.data })
         } catch (e) {
             console.log(e)
         }
