@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  gestaomedica:
+    build: .
+    ports:
+      - '3000:3000'
+    container_name: gestao-medica
+    depends_on:
+      - db
+      - rabbitmq
+    environment:
+      - RMQ_HOST=localhost
+      - RMQ_USER=guest
+      - RMQ_PASS=guest
+      - RMQ_PORT=5672
+      - DATABASE_NAME=medicos
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=123
+      - DATABASE_DIALECT=mysql
+      - DATABASE_ACESS=localhost
+      - DATABASE_PORT=3306
+
+  db:
+    image: mysql
+    ports:
+      - '3306:3306'
+    container_name: db
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    container_name: rabbitmq

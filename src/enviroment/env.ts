@@ -7,4 +7,5 @@ export default {
     databasePass: process.env.DATABASE_PASSWORD as string,
     databaseDialect: process.env.DATABASE_DIALECT as Dialect,
     databaseAcess: process.env.DATABASE_ACESS as string,
+    databasePort: process.env.DATABASE_PORT as string
 }

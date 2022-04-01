@@ -1,12 +1,13 @@
-import createMedico from '../../use-case/createMedico';
+import createMedico from '../../use-case/CreateMedico';
 import updateField from '../../use-case/UpdateField';
 import deleteMedico from '../../use-case/DeleteMedico';
-import findMedicos from '../../use-case/findMedicos';
+import findMedicos from '../../use-case/FindMedicos';
 
 import { Request, Response } from 'express'
 import { validationResult } from "express-validator";
 
 export default {
+    //@ts-ignore
     create: async (req: Partial<Request>, res: Response) => {
         try {
             const errors = validationResult(req)
